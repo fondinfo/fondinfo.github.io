@@ -1,0 +1,6 @@
+To run the server:
+
+- Open a terminal window
+- Navigate to the directory you want to have the root directory
+- Execute the command to start the server: 
+  python -m http.server 8000
