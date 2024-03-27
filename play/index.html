@@ -320,7 +320,7 @@
         `);
         pyodide.FS.mkdir("/fondinfo");
         pyodide.FS.mount(pyodide.FS.filesystems.IDBFS, { root: "." }, "/fondinfo");
-        let url = "https://raw.githubusercontent.com/tomamic/tomamic.github.io/master/pyodide/fondinfo.b64";
+        let url = "https://raw.githubusercontent.com/fondinfo/fondinfo.github.io/master/play/fondinfo.b64";
         fetch(url).then(file => file.text().then(text => {
           pyodide.FS.writeFile("/fondinfo.b64", text, { encoding : "utf8" });
           load_local_files(load_fondinfo_files);
