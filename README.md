@@ -3,6 +3,7 @@
 #### Alberto Ferrari
 
 ### Codice presente nel testo:
+- [play](Python playground)
 - [g2d](g2d)
 - [Data Base](https://fondinfo.github.io/database){:target="_blank"}
 - [Web](web)
