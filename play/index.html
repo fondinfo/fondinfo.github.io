@@ -167,20 +167,21 @@
         let fn = location.search && location.search.substring(1); // || "p21_anim.py";
         if (fn) {
           current_file = fn;
+          /*
           let url = "https://raw.githubusercontent.com/fondinfo/fondinfo/master/" + fn;
           fetch(url).then(file => file.text().then(text => {
             pyodide.FS.writeFile("/fondinfo/" + fn, text, { encoding: "utf8" });
             editor.setValue(text);
             update_file_list();
             pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err));
-          }));
+          }));*/
         } else {
           current_file = "p21_anim.py";
-          let text = pyodide.FS.readFile("/fondinfo/" + current_file, { encoding: "utf8" });
-          editor.setValue(text);
-          update_file_list();
-          pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err));
         }
+        let text = pyodide.FS.readFile("/fondinfo/" + current_file, { encoding: "utf8" });
+        editor.setValue(text);
+        update_file_list();
+        pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err));
         document.querySelector("#loading").style.display = "none";
         if (callback) callback();
       }
