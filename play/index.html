@@ -196,7 +196,6 @@
         if (confirm("Are you sure to delete current project?")) {
           let files = pyodide.FS.readdir("/fondinfo/");
           for (const fn of files) if (fn[0] != '.') pyodide.FS.unlink(fn);
-          pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err));
           load_fondinfo_files();
         }
       }
