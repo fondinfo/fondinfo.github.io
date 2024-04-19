@@ -268,7 +268,7 @@
       }
 
       function new_file() {
-        let fn = prompt("New file name");
+        let fn = prompt("New file name (trailing “/” for a folder)");
         if (fn) {
           if (fn.endsWith("/")) {
               pyodide.FS.mkdir(fn);
