@@ -1,4 +1,4 @@
-### "Fondamenti di Informatica e Laboratorio di Programmazione"
+### "Introduzione all'informatica con Python"
 #### Michele Tomaiuolo
 #### Alberto Ferrari
 
