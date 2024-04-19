@@ -167,7 +167,7 @@
           import base64, io, os, shutil, sys, zipfile
           os.chdir("/fondinfo")
           sys.path += ["/", ".", "/fondinfo"]
-          if not os.path.exists("g2d.py"):
+          if not os.path.exists("g2d_pyodide.py"):
               text = open("/fondinfo.b64").read();
               with zipfile.ZipFile(io.BytesIO(base64.b64decode(text)), "r") as zip_ref:
                   zip_ref.extractall()
