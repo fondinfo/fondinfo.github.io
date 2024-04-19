@@ -150,7 +150,10 @@
               editor.setValue(text);
               if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?${fn}`);
             } catch (e) {
-              pyodide.FS.chdir(fn)
+              save_file();
+              current_file = '';
+              editor.setValue('');
+              pyodide.FS.chdir(fn);
               update_file_list();
             }
         }
@@ -209,12 +212,14 @@
         document.body.removeChild(elem);
       }
 
-      function update_file_list() {
+      function update_file_list(dir) {
         const fl = document.querySelector("#file_list");
         fl.innerHTML = "";
         let files = pyodide.FS.readdir("./");
         files.sort();
-        for (const fn of files) if (fn != '.') {
+        console.log(pyodide.FS.cwd())
+        excl = pyodide.FS.cwd() == "/fondinfo" ? ['.', '..'] : ['.']
+        for (const fn of files) if (!excl.includes(fn)) {
           let elem = document.createElement("OPTION");
           elem.value = fn;
           elem.innerHTML = fn;
