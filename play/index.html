@@ -148,7 +148,9 @@
               save_file();
               current_file = fn;
               editor.setValue(text);
-              if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?${fn}`);
+              let cwd = pyodide.FS.cwd().substring(9);
+              if (cwd.length) { cwd += '/'; }
+              if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?${cwd+fn}`);
             } catch (e) {
               save_file();
               current_file = '';
@@ -164,17 +166,23 @@
         pyodide.runPython(`
           import base64, io, os, shutil, sys, zipfile
           os.chdir("/fondinfo")
-          sys.path.append(".")
+          sys.path += [".", "/fondinfo"]
           if not os.path.exists("g2d.py"):
               text = open("/fondinfo.b64").read();
               with zipfile.ZipFile(io.BytesIO(base64.b64decode(text)), "r") as zip_ref:
                   zip_ref.extractall()
+              if os.path.exists("g2d.py"):
+                  shutil.copyfile("g2d.py", "g2d_pygame.py")
               if os.path.exists("g2d_pyodide.py"):
                   shutil.copyfile("g2d_pyodide.py", "g2d.py")
         `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
-        current_file = location.search && location.search.substring(1) || "p21_anim.py";
+        current_file = location.search && location.search.substring(1) || "main.py";
         let text = pyodide.FS.readFile("/fondinfo/" + current_file, { encoding: "utf8" });
         editor.setValue(text);
+        if (current_file.includes("/")) {
+            pyodide.FS.chdir("/fondinfo/" + current_file.substr(0, current_file.lastIndexOf("/")));
+            current_file = current_file.substring(1 + current_file.lastIndexOf("/"));
+        }
         update_file_list();
         pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err));
         document.querySelector("#loading").style.display = "none";
