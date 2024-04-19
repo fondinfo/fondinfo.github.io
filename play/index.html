@@ -134,7 +134,7 @@
       function load_file(fn) {
         if (!fn) return;
         if (["png", "jpg", "gif", "mp3", "mp4"].includes(fn.split(".").at(-1))) {
-          let array = pyodide.FS.readFile("/fondinfo/" + fn);
+          let array = pyodide.FS.readFile(fn);
           let blob = new Blob([array], {type: "application/octet-stream"});
           let elem = window.document.createElement("A");
           elem.href = window.URL.createObjectURL(blob);
@@ -143,11 +143,17 @@
           elem.click();
           document.body.removeChild(elem);
         } else {
-          save_file();
-          current_file = fn;
-          let text = pyodide.FS.readFile("/fondinfo/" + fn, { encoding: "utf8" });
-          editor.setValue(text);
-          if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?${fn}`);
+            try {
+              let text = pyodide.FS.readFile(fn, { encoding: "utf8" });
+              save_file();
+              current_file = fn;
+              editor.setValue(text);
+              if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?${fn}`);
+            } catch (e) {
+              alert("dir");
+              pyodide.FS.chdir(fn)
+              update_file_list();
+            }
         }
         update_file_list();
       }
@@ -207,9 +213,9 @@
       function update_file_list() {
         const fl = document.querySelector("#file_list");
         fl.innerHTML = "";
-        let files = pyodide.FS.readdir("/fondinfo/");
+        let files = pyodide.FS.readdir("./");
         files.sort();
-        for (const fn of files) if (fn[0] != '.') {
+        for (const fn of files) if (fn != '.') {
           let elem = document.createElement("OPTION");
           elem.value = fn;
           elem.innerHTML = fn;
