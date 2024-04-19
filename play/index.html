@@ -150,7 +150,6 @@
               editor.setValue(text);
               if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?${fn}`);
             } catch (e) {
-              alert("dir");
               pyodide.FS.chdir(fn)
               update_file_list();
             }
