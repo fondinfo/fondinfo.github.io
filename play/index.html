@@ -177,7 +177,9 @@
                   shutil.copyfile("g2d_pyodide.py", "g2d.py")
         `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
         current_file = location.search && location.search.substring(1) || "main.py";
-        let text = pyodide.FS.readFile("/fondinfo/" + current_file, { encoding: "utf8" });
+        try {
+          let text = pyodide.FS.readFile("/fondinfo/" + current_file, { encoding: "utf8" });
+        } catch(e) { text = ""; }
         editor.setValue(text);
         if (current_file.includes("/")) {
             pyodide.FS.chdir("/fondinfo/" + current_file.substr(0, current_file.lastIndexOf("/")));
