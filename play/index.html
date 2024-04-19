@@ -195,7 +195,13 @@
       function delete_project() {
         if (confirm("Are you sure to delete current project?")) {
           let files = pyodide.FS.readdir("/fondinfo/");
-          for (const fn of files) if (fn[0] != '.') pyodide.FS.unlink(fn);
+          for (const fn of files) if (fn[0] != '.') {
+            try {
+              pyodide.FS.unlink(fn);
+            } catch(e) {
+              pyodide.FS.rmdir(fn);
+            }
+          }
           load_fondinfo_files();
         }
       }
