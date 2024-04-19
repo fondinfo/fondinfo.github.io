@@ -127,7 +127,7 @@
         timer = null;
         if (!current_file) return;
         let text = editor.getValue().replaceAll("\t", "    ");
-        pyodide.FS.writeFile("/fondinfo/" + current_file, text, { encoding : "utf8" });
+        pyodide.FS.writeFile(current_file, text, { encoding : "utf8" });
         pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err));
       }
 
@@ -270,11 +270,16 @@
       function new_file() {
         let fn = prompt("New file name");
         if (fn) {
-          if (!fn.includes(".")) fn += ".py";
-          editor.setValue("");
-          current_file = fn;
-          save_file();
-          update_file_list();
+          if (fn.endsWith("/")) {
+              pyodide.FS.mkdir(fn);
+              pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err))
+          } else {
+              if (!fn.includes(".")) fn += ".py";
+              editor.setValue("");
+              current_file = fn;
+              save_file();
+              update_file_list();
+          }
         }
       }
 
