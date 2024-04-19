@@ -273,6 +273,7 @@
           if (fn.endsWith("/")) {
               pyodide.FS.mkdir(fn);
               pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err))
+              update_file_list();
           } else {
               if (!fn.includes(".")) fn += ".py";
               editor.setValue("");
