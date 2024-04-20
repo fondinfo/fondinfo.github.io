@@ -168,12 +168,11 @@
           import base64, io, os, shutil, sys, zipfile
           os.chdir("/fondinfo")
           sys.path += ["/", ".", "/fondinfo"]
-          if not os.path.exists("g2d_pyodide.py"):
-              text = open("/fondinfo.b64").read();
-              with zipfile.ZipFile(io.BytesIO(base64.b64decode(text)), "r") as zip_ref:
-                  zip_ref.extractall()
-          if os.path.exists("g2d_pyodide.py"):
-              shutil.copyfile("g2d_pyodide.py", "/g2d.py")
+          text = open("/fondinfo.b64").read();
+          with zipfile.ZipFile(io.BytesIO(base64.b64decode(text)), "r") as zip_ref:
+            if not os.path.exists("g2d_pyodide.py"):
+              zip_ref.extractall()
+            open("/g2d.py", "wb").write(zip_ref.read("g2d_pyodide.py"))
         `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
         current_file = location.search && location.search.substring(1) || "main.py";
         let text = "";
