@@ -229,7 +229,7 @@
       function call_script(event) {
         let scroll = editor.getScrollInfo();
         editor.getInputField().blur();
-        let text = editor.getValue().replace("\t", "    ");
+        let text = editor.getValue().replaceAll("\t", "    ");
         editor.setValue(text);
         save_file();
         editor.scrollTo(scroll.left, scroll.top);
