@@ -89,7 +89,7 @@
     Fondinfo Playground
     <input type="button" id="run_button" value="▶️ RUN&nbsp;" onclick="call_script()" />
     <input type="button" id="clear_button" value="⏹️ STOP"  onclick="clear_canvas()" style="display:none"/>
-    <select id="file_list" name="file_list" onchange="load_file(this.value)"></select>
+    <select id="file_list" onmouseenter="update_file_list()" name="file_list" onchange="load_file(this.value)"></select>
     <button onclick="new_file()" title="New file">➕</button>
     <button title="Upload file or project"><label><input type="file" id="file" onchange="upload_file()" style="display:none;">⬆️</label></button>
     <button onclick="download_project()" title="Download project">⬇️</button>
