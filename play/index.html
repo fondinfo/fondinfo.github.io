@@ -286,6 +286,7 @@
             with zipfile.ZipFile("`+project+`", "r") as zip_ref:
                 zip_ref.extractall()
           `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
+          if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?`);
           load_fondinfo();
       }
 
