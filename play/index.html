@@ -93,7 +93,7 @@
     <button onclick="new_file()" title="New file">➕</button>
     <button title="Upload file or project"><label><input type="file" id="file" onchange="upload_file()" style="display:none;">⬆️</label></button>
     <button onclick="download_project()" title="Download project">⬇️</button>
-    <button onclick="delete_project()" title="Delete project">♻️</button>
+    <button onclick="load_project('/fondinfo.zip')" title="Delete project">♻️</button>
     </h1>
     <div id="loading"></div>
 
@@ -149,7 +149,7 @@
               save_file();
               current_file = fn;
               editor.setValue(text);
-              term.clear();
+              if (term) term.clear();
               let cwd = pyodide.FS.cwd().substring(9);
               if (cwd.length) { cwd += '/'; }
               if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?${cwd+fn}`);
@@ -164,14 +164,13 @@
         update_file_list();
       }
 
-      function load_fondinfo_files(callback=null) {
+      function load_fondinfo() {
         pyodide.runPython(`
           import base64, io, os, shutil, sys, zipfile
           os.chdir("/fondinfo")
           sys.path += ["/", ".", "/fondinfo"]
-          text = open("/fondinfo.b64").read();
-          with zipfile.ZipFile(io.BytesIO(base64.b64decode(text)), "r") as zip_ref:
-            if not os.path.exists("g2d_pyodide.py"):
+          with zipfile.ZipFile("/fondinfo.zip") as zip_ref:
+            if not os.listdir():
               zip_ref.extractall()
             open("/g2d.py", "wb").write(zip_ref.read("g2d_pyodide.py"))
         `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
@@ -188,43 +187,10 @@
         update_file_list();
         pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err));
         document.querySelector("#loading").style.display = "none";
-        if (callback) callback();
-      }
-
-      function empty_cwd() {
-          let files = pyodide.FS.readdir("./");
-          for (const fn of files) if (fn[0] != '.') {
-            try {
-              pyodide.FS.unlink(fn);
-            } catch(e) {
-              pyodide.FS.chdir(fn);
-              empty_cwd();
-              pyodide.FS.chdir("..");
-              pyodide.FS.rmdir(fn);
-            }
-          }
-      }
-
-      function delete_project() {
-        if (confirm("Are you sure to delete current project?")) {
-          pyodide.FS.chdir("/fondinfo");
-          empty_cwd();
-          load_fondinfo_files();
-        }
-      }
-
-      function load_local_files(callback=null) {
-        pyodide.FS.syncfs(true, err => {
-          if (err) {
-            console.error("Error syncing from IDBFS", err);
-          } else {
-            if (callback) callback();
-          }
-        });
       }
 
       function download_project() {
-        pyodide.runPython(`import shutil\nshutil.make_archive("/project", "zip")`,
+        pyodide.runPython(`import os, shutil;os.chdir("/fondinfo");shutil.make_archive("/project", "zip")`,
           { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
         let array = pyodide.FS.readFile("/project.zip");
         let blob = new Blob([array], {type: "application/zip"});
@@ -307,6 +273,22 @@
         }
       }
 
+      function load_project(project) {
+          let question = "Are you sure to delete current project?";
+          if (confirm(question)) pyodide.runPython(`
+            import os, shutil, zipfile
+            os.chdir("/fondinfo");
+            for f in os.listdir():
+                try:
+                    shutil.rmtree(f)
+                except OSError:
+                    os.remove(f)
+            with zipfile.ZipFile("`+project+`", "r") as zip_ref:
+                zip_ref.extractall()
+          `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
+          load_fondinfo();
+      }
+
       async function upload_file() {
         let elem = document.getElementById("file");
         let reader = new FileReader();
@@ -314,21 +296,16 @@
         reader.onload = () => {
           let fn = elem.value.replaceAll("\\", "/").split("/").at(-1);
           let array = new Uint8Array(reader.result);
-          pyodide.FS.writeFile("/fondinfo/" + fn, Buffer.from(array));
-          let question = "Are you sure to delete current project?";
-          if (fn.endsWith(".zip") && confirm(question)) pyodide.runPython(`
-            import os, shutil, zipfile
-            for f in os.listdir("."):
-                try:
-                    shutil.rmtree(f)
-                except OSError:
-                    if f != "`+fn+`": os.remove(f)
-            with zipfile.ZipFile("`+fn+`", "r") as zip_ref:
-                zip_ref.extractall()
-            os.remove("`+fn+`")
-          `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
-          pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err))
-          update_file_list();
+          if (fn.endsWith(".zip")) {
+            fn = "/" + fn;
+            pyodide.FS.writeFile(fn, Buffer.from(array));
+            load_project(fn);
+            //pyodide.FS.unlink(fn);
+          } else {
+            pyodide.FS.writeFile(fn, Buffer.from(array));
+            pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err))
+            update_file_list();
+          }
         }
       }
 
@@ -350,8 +327,15 @@
         pyodide.FS.mount(pyodide.FS.filesystems.IDBFS, { root: "." }, "/fondinfo");
         let url = "https://raw.githubusercontent.com/fondinfo/fondinfo.github.io/master/play/fondinfo.b64";
         fetch(url).then(file => file.text().then(text => {
-          pyodide.FS.writeFile("/fondinfo.b64", text, { encoding : "utf8" });
-          load_local_files(load_fondinfo_files);
+          bytes = Uint8Array.from(atob(text), m => m.codePointAt(0))
+          pyodide.FS.writeFile("/fondinfo.zip", bytes);
+          pyodide.FS.syncfs(true, err => {
+            if (err) {
+              console.error("Error syncing from IDBFS", err);
+            } else {
+              load_fondinfo();
+            }
+          });
         }));
 
         create_console();
