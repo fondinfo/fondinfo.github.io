@@ -7,3 +7,4 @@
 - [g2d](g2d)
 - [Data Base](https://fondinfo.github.io/database){:target="_blank"}
 - [Web](web){:target="_blank"}
+- [Soluzioni esericizi](soluzioni)
