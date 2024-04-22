@@ -1,4 +1,12 @@
 ### Soluzione di alcuni esercizi proposti 
 
-- [Capitolo 2 - Programmare con Python](https://fondinfo.github.io/soluzioni/sol_cap-02.pdf)
-
+- [Capitolo  2 - Programmare con Python](https://fondinfo.github.io/soluzioni/sol_cap-02.pdf)
+- [Capitolo  3 - Iterazioni](https://fondinfo.github.io/soluzioni/sol_cap-03.pdf)
+- [Capitolo  4 - Funzioni](https://fondinfo.github.io/soluzioni/sol_cap-04.pdf)
+- [Capitolo  5 - Animazioni](https://fondinfo.github.io/soluzioni/sol_cap-05.pdf)
+- [Capitolo  6 - Oggetti](https://fondinfo.github.io/soluzioni/sol_cap-06.pdf)
+- [Capitolo  7 - Relazioni tra classi](https://fondinfo.github.io/soluzioni/sol_cap-07.pdf)
+- [Capitolo  8 - Sequenze di dati](https://fondinfo.github.io/soluzioni/sol_cap-08.pdf)
+- [Capitolo  9 - Strutture dati bidimensionali](https://fondinfo.github.io/soluzioni/sol_cap-09.pdf)
+- [Capitolo 10 - File](https://fondinfo.github.io/soluzioni/sol_cap-10.pdf)
+- [Capitolo 11 - Strutture ricorsive](https://fondinfo.github.io/soluzioni/sol_cap-11.pdf)
