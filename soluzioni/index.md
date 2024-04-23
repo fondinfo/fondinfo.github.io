@@ -9,4 +9,5 @@
 - [Capitolo  8 - Sequenze di dati](https://fondinfo.github.io/soluzioni/sol_cap-08.pdf)
 - [Capitolo  9 - Strutture dati bidimensionali](https://fondinfo.github.io/soluzioni/sol_cap-09.pdf)
 - [Capitolo 10 - File](https://fondinfo.github.io/soluzioni/sol_cap-10.pdf)
-- [Capitolo 11 - Strutture ricorsive](https://fondinfo.github.io/soluzioni/sol_cap-11.pdf)
+- [Capitolo 11 - Ricorsione](https://fondinfo.github.io/soluzioni/sol_cap-11.pdf)
+- [Capitolo 12 - Strutture ricorsive](https://fondinfo.github.io/soluzioni/sol_cap-12.pdf)
