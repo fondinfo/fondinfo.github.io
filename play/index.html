@@ -223,9 +223,11 @@
         try {
           create_console();
           pyodide.runPython(`
+            name = None
             for name in dir():
               if not name.startswith("_") and name not in ["input", "prompt"]:
                 del globals()[name]
+            del name
           `);
           pyodide.runPython(pythonCode); //, { globals: pyodide.globals.get("dict")() });
         } catch (err) {
