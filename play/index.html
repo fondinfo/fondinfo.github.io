@@ -183,6 +183,7 @@
           fn = fn.substring(1 + fn.lastIndexOf("/"));
         }
         load_file(fn);
+        save_file();
         document.querySelector("#loading").style.display = "none";
       }
 
