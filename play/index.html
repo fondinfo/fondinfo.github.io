@@ -222,6 +222,11 @@
         write(">>> ## run " + current_file + "\n");
         try {
           create_console();
+          pyodide.runPython(`
+            for name in dir():
+              if not name.startswith("_") and name not in ["input", "prompt"]:
+                del globals()[name]
+          `);
           pyodide.runPython(pythonCode); //, { globals: pyodide.globals.get("dict")() });
         } catch (err) {
           write(err);
