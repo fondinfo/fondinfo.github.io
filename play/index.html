@@ -210,7 +210,7 @@
         excl = pyodide.FS.cwd() == "/fondinfo" ? [".", ".."] : ["."]
         for (let fn of files) if (!excl.includes(fn)) {
           const { mode, timestamp } = pyodide.FS.lookupPath(fn).node;
-          if (FS.isDir(mode)) {
+          if (pyodide.FS.isDir(mode)) {
             fn += "/";
           }
           let elem = document.createElement("OPTION");
