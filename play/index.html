@@ -145,7 +145,10 @@
           document.body.removeChild(elem);
         } else {
           try {
-            let text = pyodide.FS.readFile(fn, { encoding: "utf8" });
+            let text = "";
+            try {
+              text = pyodide.FS.readFile(fn, { encoding: "utf8" });
+            } catch(e) { }
             save_file();
             current_file = fn;
             editor.setValue(text);
@@ -180,18 +183,6 @@
           fn = fn.substring(1 + fn.lastIndexOf("/"));
         }
         load_file(fn);
-        /*current_file = location.search && location.search.substring(1) || "main.py";
-        let text = "";
-        try {
-          text = pyodide.FS.readFile("/fondinfo/" + current_file, { encoding: "utf8" });
-        } catch(e) { }
-        editor.setValue(text);
-        if (current_file.includes("/")) {
-          pyodide.FS.chdir("/fondinfo/" + current_file.substr(0, current_file.lastIndexOf("/")));
-          current_file = current_file.substring(1 + current_file.lastIndexOf("/"));
-        }
-        update_file_list();
-        pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err));*/
         document.querySelector("#loading").style.display = "none";
       }
 
