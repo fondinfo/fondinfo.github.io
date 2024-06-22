@@ -221,8 +221,7 @@
       function evaluatePython(pythonCode) {
         write(">>> ## run " + current_file + "\n");
         try {
-          let dict = pyodide.pyimport("dict");
-          pyodide.runPython(pythonCode, dict());
+          pyodide.runPython(pythonCode, { globals: pyodide.globals.get("dict")() });
         } catch (err) {
           write(err);
         }
