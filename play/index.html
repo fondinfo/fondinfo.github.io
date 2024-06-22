@@ -143,26 +143,24 @@
           document.body.appendChild(elem);
           elem.click();
           document.body.removeChild(elem);
+        } else if (fn.endsWith("/")) {
+          save_file();
+          current_file = '';
+          editor.setValue('');
+          pyodide.FS.chdir(fn);
+          update_file_list();
         } else {
+          let text = "";
           try {
-            let text = "";
-            try {
-              text = pyodide.FS.readFile(fn, { encoding: "utf8" });
-            } catch(e) { }
-            save_file();
-            current_file = fn;
-            editor.setValue(text);
-            if (term) term.clear();
-            let cwd = pyodide.FS.cwd().substring(9);
-            if (cwd.length) { cwd += '/'; }
-            if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?${cwd+fn}`);
-          } catch (e) {
-            save_file();
-            current_file = '';
-            editor.setValue('');
-            pyodide.FS.chdir(fn);
-            update_file_list();
-          }
+            text = pyodide.FS.readFile(fn, { encoding: "utf8" });
+          } catch(e) { }
+          save_file();
+          current_file = fn;
+          editor.setValue(text);
+          if (term) term.clear();
+          let cwd = pyodide.FS.cwd().substring(9);
+          if (cwd.length) { cwd += '/'; }
+          if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?${cwd+fn}`);
         }
         update_file_list();
       }
