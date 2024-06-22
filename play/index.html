@@ -175,7 +175,7 @@
               zip_ref.extractall()
             open("/g2d.py", "wb").write(zip_ref.read("g2d_pyodide.py"))
         `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
-        pyodide.runPython(`__saved_names__ = set(dir()) | {"__saved_names__"}`);
+        pyodide.runPython(`__saved_names__ = set(dir()) | {"__saved_names__", "name"}`);
         let fn = location.search && location.search.substring(1) || "main.py";
         if (fn.includes("/")) {
           pyodide.FS.chdir("/fondinfo/" + fn.substr(0, fn.lastIndexOf("/")));
