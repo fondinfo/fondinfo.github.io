@@ -221,7 +221,7 @@
       function evaluatePython(pythonCode) {
         write(">>> ## run " + current_file + "\n");
         try {
-          if (term) term.globals.clear();
+          create_console();
           pyodide.runPython(pythonCode); //, { globals: pyodide.globals.get("dict")() });
         } catch (err) {
           write(err);
