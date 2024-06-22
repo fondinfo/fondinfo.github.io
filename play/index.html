@@ -207,8 +207,12 @@
         fl.innerHTML = "";
         let files = pyodide.FS.readdir("./");
         files.sort();
-        excl = pyodide.FS.cwd() == "/fondinfo" ? ['.', '..'] : ['.']
+        excl = pyodide.FS.cwd() == "/fondinfo" ? [".", ".."] : ["."]
         for (const fn of files) if (!excl.includes(fn)) {
+          const { mode, timestamp } = pyodide.FS.lookupPath(fn).node;
+          if (FS.isDir(mode)) {
+            fn += "/";
+          }
           let elem = document.createElement("OPTION");
           elem.value = fn;
           elem.innerHTML = fn;
