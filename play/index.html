@@ -184,6 +184,7 @@
         }
         update_file_list();
         document.querySelector("#file_list").value = fn;
+        document.querySelector("#file_list").onchange();
         document.querySelector("#loading").style.display = "none";
       }
 
@@ -272,6 +273,7 @@
             save_file();
             update_file_list();
             document.querySelector("#file_list").value = fn;
+            document.querySelector("#file_list").onchange();
           }
         }
       }
