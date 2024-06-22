@@ -174,7 +174,13 @@
               zip_ref.extractall()
             open("/g2d.py", "wb").write(zip_ref.read("g2d_pyodide.py"))
         `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
-        current_file = location.search && location.search.substring(1) || "main.py";
+        let fn = location.search && location.search.substring(1) || "main.py";
+        if (fn.includes("/")) {
+          pyodide.FS.chdir("/fondinfo/" + fn.substr(0, fn.lastIndexOf("/")));
+          fn = fn.substring(1 + fn.lastIndexOf("/"));
+        }
+        load_file(fn);
+        /*current_file = location.search && location.search.substring(1) || "main.py";
         let text = "";
         try {
           text = pyodide.FS.readFile("/fondinfo/" + current_file, { encoding: "utf8" });
@@ -185,7 +191,7 @@
           current_file = current_file.substring(1 + current_file.lastIndexOf("/"));
         }
         update_file_list();
-        pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err));
+        pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err));*/
         document.querySelector("#loading").style.display = "none";
       }
 
