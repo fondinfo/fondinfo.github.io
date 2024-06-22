@@ -182,8 +182,8 @@
           pyodide.FS.chdir("/fondinfo/" + fn.substr(0, fn.lastIndexOf("/")));
           fn = fn.substring(1 + fn.lastIndexOf("/"));
         }
-        load_file(fn);
-        save_file();
+        update_file_list();
+        document.querySelector("#file_list").value = fn;
         document.querySelector("#loading").style.display = "none";
       }
 
