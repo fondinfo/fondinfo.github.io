@@ -267,8 +267,7 @@
             if (!fn.includes(".")) fn += ".py";
             editor.setValue("");
             current_file = fn;
-            save_file();
-            update_file_list();
+            load_file(fn);
           }
         }
       }
