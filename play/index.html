@@ -158,7 +158,7 @@
           current_file = fn;
           editor.setValue(text);
           if (term) term.clear();
-          let cwd = pyodide.FS.cwd().substring(9);
+          let cwd = pyodide.FS.cwd().substring(10);
           if (cwd.length) { cwd += '/'; }
           if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?${cwd+fn}`);
         }
