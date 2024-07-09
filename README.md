@@ -8,4 +8,4 @@
 - [Data Base](https://fondinfo.github.io/database){:target="_blank"}
 - [Web](web){:target="_blank"}
 - [Data analysis](https://fondinfo.github.io/dataanalysis){:target="_blank"}
-- [Soluzioni esericizi](soluzioni)
+- [Soluzioni esercizi](soluzioni)
