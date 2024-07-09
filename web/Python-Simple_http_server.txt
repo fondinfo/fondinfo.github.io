@@ -1,4 +1,4 @@
-To run the server:
+How to run the server:
 
 - Open a terminal window
 - Navigate to the directory you want to have the root directory
