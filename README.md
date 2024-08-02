@@ -1,7 +1,7 @@
 ## Libro di testo
 
-- [Catalogo McGraw-Hill](https://www.mheducation.it/9788838613586)
-- [🛒 Amazon](https://www.amazon.it/dp/8838613583)
+- [Catalogo McGraw-Hill](https://www.mheducation.it/9788838613586){:target="_blank"}
+- [🛒 Amazon](https://www.amazon.it/dp/8838613583){:target="_blank"}
 
 ## Codice presente nel testo
 
