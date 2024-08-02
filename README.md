@@ -12,6 +12,8 @@
 - [Data analysis](https://fondinfo.github.io/dataanalysis){:target="_blank"}
 - [Soluzioni esercizi](soluzioni)
 
+## [Slide](/slides)
+
 ## Slide - Programmazione
 
 - [Problem solving](/slides/p11-probsolv.html) - [Basi](/slides/p12-basi.html) - [Iterazioni](/slides/p13-cicli.html)
