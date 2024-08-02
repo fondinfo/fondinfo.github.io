@@ -1,3 +1,8 @@
+## Libro di testo
+
+- [Catalogo McGraw-Hill](https://www.mheducation.it/9788838613586)
+- [🛒 Amazon](https://www.amazon.it/dp/8838613583)
+
 ## Codice presente nel testo:
 - [▶️ Python playground](https://fondinfo.github.io/play)
 - [g2d](g2d)
