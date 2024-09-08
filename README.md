@@ -11,5 +11,3 @@
 - [Web](web){:target="_blank"}
 - [Data analysis](https://fondinfo.github.io/dataanalysis){:target="_blank"}
 - [Soluzioni esercizi](soluzioni)
-
-## [Slide e lezioni](/slides)
