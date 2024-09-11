@@ -365,9 +365,10 @@
           from pyodide.ffi import to_js
           from pyodide.console import PyodideConsole, repr_shorten, BANNER
           import __main__
+          import builtins
+          sys.set_int_max_str_digits(0)
           BANNER = "Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER
           pyconsole = PyodideConsole(__main__.__dict__)
-          import builtins
           async def await_fut(fut):
             res = await fut
             if res is not None:
