@@ -1,4 +1,4 @@
-Termux offre un terminale ed un sistema di pacchetti Linux su Android.
+Termux offre un terminale e un sistema di pacchetti Linux su Android.
 
 <https://lwn.net/Articles/936953/>
 
