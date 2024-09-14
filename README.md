@@ -12,4 +12,9 @@
 - [Data analysis](https://fondinfo.github.io/dataanalysis){:target="_blank"}
 - [Soluzioni esercizi](soluzioni)
 
+## Software
+
+- [Termux](termux)
+- [Thonny](https://thonny.org/)
+
 ## [Slide e lezioni](/slides)
