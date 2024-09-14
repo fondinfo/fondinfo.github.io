@@ -26,7 +26,7 @@ pip install thonny
 
 - Termux è essenzialmente un terminale testuale
 - Per eseguire applicazioni grafiche, occorre supporto per `X11`
-- Scaricare ed installare il seguente Apk per Termux:X11:
+- Scaricare e installare il seguente Apk per Termux:X11:
     - <https://github.com/fondinfo/fondinfo.github.io/blob/main/termux/termux-x11-universal-debug.zip>
 - Eseguire da Termux il seguente comando, prima di avviare l'app *Termux:X11*
 
