@@ -1,6 +1,6 @@
 ## Libro di testo
 
-<a href="https://www.mheducation.it/9788838613586"><img style="float:right; width:250px;" src="fondinfo-book.jpg"></a>
+<a href="https://www.mheducation.it/9788838613586"><img style="float:right; width:250px; border:1px solid silver" src="fondinfo-book.jpg"></a>
 
 - [Catalogo McGraw-Hill](https://www.mheducation.it/9788838613586){:target="_blank"}
 - [🛒 Amazon](https://www.amazon.it/dp/8838613583){:target="_blank"}
