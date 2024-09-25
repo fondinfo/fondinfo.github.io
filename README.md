@@ -1,3 +1,4 @@
+<img style="float:right; width:200px;" src="fondinfo-book.jpg">
 ## Libro di testo
 
 - [Catalogo McGraw-Hill](https://www.mheducation.it/9788838613586){:target="_blank"}
