@@ -1,4 +1,4 @@
-<img style="float:right; width:300px;" src="fondinfo-book.jpg">
+<img style="float:right; width:250px;" src="fondinfo-book.jpg">
 
 ## Libro di testo
 
