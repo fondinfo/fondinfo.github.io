@@ -1,6 +1,6 @@
-<img style="float:right; width:250px;" src="fondinfo-book.jpg">
-
 ## Libro di testo
+
+<img style="float:right; width:250px;" src="fondinfo-book.jpg">
 
 - [Catalogo McGraw-Hill](https://www.mheducation.it/9788838613586){:target="_blank"}
 - [🛒 Amazon](https://www.amazon.it/dp/8838613583){:target="_blank"}
