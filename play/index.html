@@ -335,7 +335,7 @@
         // Pyodide is now ready to use...
         pyodide.runPython(`
           from js import prompt
-          input = prompt
+          __builtins__.input = prompt
         `);
         pyodide.FS.mkdir("/fondinfo");
         pyodide.FS.mount(pyodide.FS.filesystems.IDBFS, { root: "." }, "/fondinfo");
