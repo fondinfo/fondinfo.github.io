@@ -18,7 +18,7 @@ Termux offre un terminale e un sistema di pacchetti Linux su Android.
 ```
 pkg update
 pkg install x11-repo tur-repo
-pkg install termux-x11-nightly xfce firefox python-pip python-pygame python-tkinter
+pkg install termux-x11-nightly xfce firefox python-pip python-pygame python-tkinter openssl
 pip install thonny
 ```
 
