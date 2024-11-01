@@ -84,9 +84,9 @@
   </head>
 
   <body style="font-family: Arial, sans">
-    <h1 style="font-size: 24px; font-weight: normal; vertical-align: middle; margin-left:10px;">
-    <img src="https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg" style="height: 24px; width: auto;">
-    <span onclick="location.href=`https://fondinfo.github.io/`">Fondinfo</span> Playground
+    <h1 style="font-size: 24px; font-weight: normal; margin: 8px; vertical-align: middle;">
+    <img src="https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg" style="float: left; height: 36px; width: auto; margin: 0 8px;">
+    <span onclick="location.href=`https://fondinfo.github.io/`" style="vertical-align: middle; color: white; text-shadow: 0px 0px 4px black;">Fondinfo Playground</span>
     <input type="button" id="run_button" value="▶️ RUN&nbsp;" onclick="call_script()" />
     <input type="button" id="clear_button" value="⏹️ STOP"  onclick="clear_canvas()" style="display:none"/>
     <select id="file_list" onfocus="update_file_list()" name="file_list" onchange="load_file(this.value)"></select>
@@ -459,7 +459,7 @@
           greetings: banner,
           prompt: ps1,
           completionEscape: false,
-          height: 220,
+          height: 200,
           completion: function (command, callback) {
             callback(pyconsole.complete(command).toJs()[0]);
           },
