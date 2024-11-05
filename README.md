@@ -2,7 +2,7 @@
 
 <a href="https://www.mheducation.it/9788838613586"><img style="float:right; width:250px; border:1px solid silver" src="fondinfo-book.jpg"></a>
 
-- [Catalogo McGraw-Hill]([914923](https://www.mheducation.it/introduzione-all-informatica-con-python-9788838613586-italy)){:target="_blank"}
+- [Catalogo McGraw-Hill](https://www.mheducation.it/introduzione-all-informatica-con-python-9788838613586-italy){:target="_blank"}
 - [🛒 Amazon](https://www.amazon.it/dp/8838613583){:target="_blank"}
 
 ## Codice presente nel testo
