@@ -227,7 +227,7 @@
             name = None
             for name in set(dir()) - __saved_names__:
                 del globals()[name]
-            del name
+                del name
           `);
           pyodide.runPython(pythonCode); //, { globals: pyodide.globals.get("dict")() });
         } catch (err) {
