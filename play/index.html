@@ -175,7 +175,7 @@
               zip_ref.extractall()
             open("/g2d.py", "wb").write(zip_ref.read("g2d_pyodide.py"))
         `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
-        pyodide.runPython(`__saved_names__ = set(dir()) | {"__saved_names__", "name"}`);
+        pyodide.runPython(`import sys; __saved_names__ = set(dir()) | set(sys.modules) | {"__saved_names__", "name"}`);
         let fn = location.search && location.search.substring(1) || "main.py";
         if (fn.includes("/")) {
           pyodide.FS.chdir("/fondinfo/" + fn.substr(0, fn.lastIndexOf("/")));
@@ -224,10 +224,13 @@
         try {
           create_console();
           pyodide.runPython(`
+            import sys
             name = None
             for name in set(dir()) - __saved_names__:
                 del globals()[name]
                 del name
+                if name in sys.modules:
+                    del sys.modules[name]
           `);
           pyodide.runPython(pythonCode); //, { globals: pyodide.globals.get("dict")() });
         } catch (err) {
