@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Name=Thonny
+GenericName=Python IDE
+Exec=/data/data/com.termux/files/usr/bin/thonny %F
+Comment=Python IDE for beginners
+Icon=/data/data/com.termux/files/usr/lib/python3.12/site-packages/thonny/res/thonny.png
+StartupWMClass=Thonny
+Terminal=false
+Categories=Education;Development;Debugger;IDE;
+MimeType=text/x-python;
+Actions=Edit;
+
+[Desktop Action Edit]
+Exec=/data/data/com.termux/files/usr/bin/thonny %F
+Name=Edit with Thonny
