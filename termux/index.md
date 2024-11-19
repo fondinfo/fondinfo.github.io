@@ -32,5 +32,5 @@ wget -O ~/.local/share/applications/Thonny.desktop https://fondinfo.github.io/te
 - Eseguire da Termux il seguente comando, prima di avviare l'app *Termux:X11*
 
 ```
-termux-x11 :0 -xstartup "dbus-launch --exit-with-session xfce4-session"
+termux-x11 :1 -xstartup xfce4-session
 ```
