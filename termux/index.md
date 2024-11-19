@@ -20,7 +20,7 @@ pkg update
 pkg install x11-repo tur-repo
 pkg install termux-x11-nightly xfce firefox python-pip python-pygame python-tkinter openssl wget
 pip install thonny
-wget ~/.local/share/applications/Thonny.desktop https://fondinfo.github.io/termux/Thonny.desktop
+wget -O ~/.local/share/applications/Thonny.desktop https://fondinfo.github.io/termux/Thonny.desktop
 ```
 
 ## Termux:X11
