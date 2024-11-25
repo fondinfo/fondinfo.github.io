@@ -253,7 +253,7 @@
           document.getElementById("run_button").style.display = "none";
           document.getElementById("clear_button").style.display = "inline";
           const config = { attributes: false, childList: true, subtree: true };
-          observer = new MutationObserver(clear_canvas);
+          observer = new MutationObserver(mutation_handler);
           observer.observe(document.body, config);
         }
       }
@@ -271,6 +271,12 @@
         }
       }
 
+      function mutation_handler(event) {
+        if (! document.getElementById("g2d-canvas")) {
+          clear_canvas(event):
+        }
+      }
+      
       function new_file() {
         let fn = prompt("New file name (trailing “/” for a folder)");
         if (fn) {
