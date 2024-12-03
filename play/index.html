@@ -237,7 +237,7 @@
           `);
           pyodide.runPython(pythonCode); //, { globals: pyodide.globals.get("dict")() });
         } catch (err) {
-          write(err);
+          write("" + err);
         }
       }
 
