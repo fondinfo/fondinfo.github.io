@@ -118,7 +118,7 @@
 
       function write(data) {
         if (term) {
-          echo(data);
+          term.echo($.terminal.escape_formatting(data));
         } else {
           console.log(data);
         }
