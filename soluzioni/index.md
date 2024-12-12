@@ -16,4 +16,3 @@
 - [Capitolo 17 - Espressioni regolari](https://fondinfo.github.io/soluzioni/sol_cap-17.pdf)
 - [Capitolo 18 - Grammatiche, compilatori e linguaggi](https://fondinfo.github.io/soluzioni/sol_cap-18.pdf)
 - [Capitolo 19 - Modelli di calcolo](https://fondinfo.github.io/soluzioni/sol_cap-19.pdf)
-- 
