@@ -13,3 +13,4 @@
 - [Capitolo 12 - Strutture ricorsive](https://fondinfo.github.io/soluzioni/sol_cap-12.pdf)
 - [Capitolo 13 - Logica](https://fondinfo.github.io/soluzioni/sol_cap-13.pdf)
 - [Capitolo 14 - Rappresentazione dei dati](https://fondinfo.github.io/soluzioni/sol_cap-14.pdf)
+- [Capitolo 17 - Espressioni regolari](https://fondinfo.github.io/soluzioni/sol_cap-17.pdf)
