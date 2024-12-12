@@ -14,3 +14,4 @@
 - [Capitolo 13 - Logica](https://fondinfo.github.io/soluzioni/sol_cap-13.pdf)
 - [Capitolo 14 - Rappresentazione dei dati](https://fondinfo.github.io/soluzioni/sol_cap-14.pdf)
 - [Capitolo 17 - Espressioni regolari](https://fondinfo.github.io/soluzioni/sol_cap-17.pdf)
+- [Capitolo 18 - Grammatiche, compilatori e linguaggi](https://fondinfo.github.io/soluzioni/sol_cap-18.pdf)
