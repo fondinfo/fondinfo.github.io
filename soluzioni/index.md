@@ -1,8 +1,8 @@
-### Errata corrige
+## [Home](/)
 
-- [Errata corrige](https://fondinfo.github.io/soluzioni/errata.pdf)
+## [Errata corrige](https://fondinfo.github.io/soluzioni/errata.pdf)
 
-### Soluzione di alcuni esercizi proposti 
+## Soluzione di alcuni esercizi proposti 
 
 - [Capitolo  2 - Programmare con Python](https://fondinfo.github.io/soluzioni/sol_cap-02.pdf)
 - [Capitolo  3 - Iterazioni](https://fondinfo.github.io/soluzioni/sol_cap-03.pdf)
