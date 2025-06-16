@@ -1,3 +1,7 @@
+### Errata corrige
+
+- [Errata corrige](https://fondinfo.github.io/soluzioni/errata.pdf)
+
 ### Soluzione di alcuni esercizi proposti 
 
 - [Capitolo  2 - Programmare con Python](https://fondinfo.github.io/soluzioni/sol_cap-02.pdf)
