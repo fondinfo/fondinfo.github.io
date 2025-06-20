@@ -159,8 +159,8 @@
           editor.setValue(text);
           if (term) term.clear();
           let cwd = pyodide.FS.cwd().substring(10);
-          if (cwd.length) { cwd += '/'; }
-          if (history && history.replaceState) history.replaceState({}, '', `${location.pathname}?${cwd+fn}`);
+          if (cwd.length) { cwd += "/"; }
+          if (history && history.replaceState) history.replaceState(null, "", `${location.pathname}?${cwd+fn}`);
         }
         update_file_list();
       }
@@ -296,22 +296,29 @@
         }
       }
 
-      function load_project(project) {
-        let question = "Are you sure to delete current project?";
-        if (confirm(question)) {
-          current_file = "";
+      function clean_project() {
           pyodide.runPython(`
-            import os, shutil, zipfile
+            import os, shutil
             os.chdir("/fondinfo");
             for f in os.listdir():
               try:
                 shutil.rmtree(f)
               except OSError:
                 os.remove(f)
+          `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
+      }
+
+      function load_project(project) {
+        let question = "Are you sure to delete current project?";
+        if (confirm(question)) {
+          current_file = "";
+          clean_project();
+          pyodide.runPython(`
+            import zipfile
             with zipfile.ZipFile("`+project+`", "r") as zip_ref:
               zip_ref.extractall()
           `, { globals: pyodide.globals.get("dict")() } );  // avoid polluting the global namespace
-          if (history && history.replaceState) history.replaceState({}, '', location.pathname);
+          if (history && history.replaceState) history.replaceState(null, "", location.pathname);
           load_fondinfo();
         }
       }
@@ -360,6 +367,11 @@
           pyodide.FS.syncfs(true, err => {
             if (err) {
               console.error("Error syncing from IDBFS", err);
+            } else if (location.href && location.href.endsWith("#clean")) {
+              clean_project();
+              let loc = location.href.substring(0, location.href.length - 6);
+              if (history && history.replaceState) history.replaceState(null, "", loc);
+              load_fondinfo();
             } else {
               load_fondinfo();
             }
