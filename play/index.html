@@ -296,7 +296,7 @@
         }
       }
 
-      function clean_project() {
+      function clear_project() {
           pyodide.runPython(`
             import os, shutil
             os.chdir("/fondinfo");
@@ -312,7 +312,7 @@
         let question = "Are you sure to delete current project?";
         if (confirm(question)) {
           current_file = "";
-          clean_project();
+          clear_project();
           pyodide.runPython(`
             import zipfile
             with zipfile.ZipFile("`+project+`", "r") as zip_ref:
@@ -368,7 +368,7 @@
             if (err) {
               console.error("Error syncing from IDBFS", err);
             } else if (location.href && location.href.endsWith("#clean")) {
-              clean_project();
+              clear_project();
               let loc = location.href.substring(0, location.href.length - 6);
               if (history && history.replaceState) history.replaceState(null, "", loc);
               load_fondinfo();
