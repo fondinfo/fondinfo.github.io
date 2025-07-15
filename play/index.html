@@ -127,7 +127,7 @@
       function save_file() {
         timer = null;
         if (!current_file) return;
-        let text = editor.getValue().replaceAll("\t", "    ");
+        let text = editor.getValue().replaceAll("\t", "    ").replaceAll("\uA0", " ");
         pyodide.FS.writeFile(current_file, text, { encoding : "utf8" });
         pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err));
       }
