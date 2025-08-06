@@ -19,9 +19,7 @@ Termux offre un terminale e un sistema di pacchetti Linux su Android.
 pkg update
 pkg install x11-repo tur-repo
 pkg install termux-x11-nightly xfce firefox python-pip python-pygame python-tkinter openssl wget
-pip install thonny
 termux-setup-storage
-wget -O ~/.local/share/applications/Thonny.desktop https://fondinfo.github.io/termux/Thonny.desktop
 ```
 
 ## Termux:X11
@@ -34,4 +32,15 @@ wget -O ~/.local/share/applications/Thonny.desktop https://fondinfo.github.io/te
 
 ```
 termux-x11 :1 -xstartup xfce4-session
+```
+
+## Thonny
+
+- Thonny è un ambiente di sviluppo (IDE) per Python, molto semplice e intuitivo
+- Eseguire i seguenti comandi nel terminale per installare Thonny e aggiugerlo al menù delle applicazioni
+
+```
+pip install thonny
+mkdir ~/.local/share/applications
+wget -O ~/.local/share/applications/Thonny.desktop https://fondinfo.github.io/termux/Thonny.desktop
 ```
