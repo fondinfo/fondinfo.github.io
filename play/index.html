@@ -15,9 +15,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-ui/dist/jquery-ui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.42/js/jquery.terminal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
     <!--script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/unix_formatting.min.js"></script-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal@2.42/css/jquery.terminal.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui/dist/themes/base/jquery-ui.min.css" />
 
     <style>
@@ -96,16 +96,18 @@
     <button onclick="load_project('/fondinfo.zip')" title="Delete project">♻️</button>
     </h1>
     <div id="loading"></div>
+    <div id="stdedit"></div>
+    <div id="stdterm"></div>
 
     <script>
-      const Buffer = BrowserFS.BFSRequire('buffer').Buffer;
+      const Buffer = BrowserFS.BFSRequire("buffer").Buffer;
       current_file = "";
       editor = null;
       term = null;
       timer = null;  // to save file, after some keyup event
       observer = null;
       try {
-        editor = CodeMirror(document.body, {
+        editor = CodeMirror(document.getElementById("stdedit"), {
           lineNumbers: true,
           mode:  "python",
           indentUnit: 4,
@@ -481,7 +483,7 @@
           unlock();
         }
 
-        term = $("body").terminal(interpreter, {
+        term = $("#stdterm").terminal(interpreter, {
           greetings: banner,
           prompt: ps1,
           completionEscape: false,
