@@ -357,9 +357,9 @@
         });
         // Pyodide is now ready to use...
         pyodide.runPython(`
-		  def __prompt(msg):
-          	from js import prompt
-			return prompt(msg) or ""
+          def __prompt(msg):
+              from js import prompt
+              return prompt(msg) or ""
           __builtins__.input = __prompt
           del __prompt
         `);
@@ -543,6 +543,7 @@
     </script>
   </body>
 </html>
+
 
 
 
