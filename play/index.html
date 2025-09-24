@@ -358,7 +358,7 @@
         // Pyodide is now ready to use...
         pyodide.runPython(`
           from js import prompt
-          __builtins__.input = prompt
+          __builtins__.input = lambda msg: prompt(msg) or ""
           del prompt
         `);
         pyodide.FS.mkdir("/fondinfo");
@@ -541,3 +541,4 @@
     </script>
   </body>
 </html>
+
