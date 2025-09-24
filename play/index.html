@@ -357,11 +357,9 @@
         });
         // Pyodide is now ready to use...
         pyodide.runPython(`
-          def __prompt(msg=""):
-              from js import prompt
-              return prompt(msg) or ""
-          __builtins__.input = __prompt
-          del __prompt
+          from js import prompt
+          __builtins__.input = lambda msg="", prompt=prompt: prompt(msg) or ""
+          del prompt
         `);
         pyodide.FS.mkdir("/fondinfo");
         pyodide.FS.mount(pyodide.FS.filesystems.IDBFS, { root: "." }, "/fondinfo");
@@ -543,6 +541,7 @@
     </script>
   </body>
 </html>
+
 
 
 
