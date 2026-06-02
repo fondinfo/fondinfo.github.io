@@ -8,7 +8,7 @@
 
 ## Codice presente nel testo
 
-- [▶️ Python playground](https://fondinfo.github.io/play), con esempi
+- [▶️ Playground nel browser](https://fondinfo.github.io/play), con esempi
 - [g2d](g2d)
 - [Database](https://fondinfo.github.io/database){:target="_blank"}
 - [Web](web){:target="_blank"}
