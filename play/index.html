@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>Fondinfo Playground</title>
     <script src="https://cdn.jsdelivr.net/npm/pyodide/pyodide.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/browserfs@2.0.0/dist/browserfs.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/mode/python/python.min.js"></script>
@@ -17,7 +16,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-ui/dist/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-    <!--script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/unix_formatting.min.js"></script-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui/dist/themes/base/jquery-ui.min.css" />
 
@@ -101,7 +99,6 @@
     <div id="stdterm"></div>
 
     <script>
-      const Buffer = BrowserFS.BFSRequire("buffer").Buffer;
       current_file = "";
       editor = null;
       term = null;
@@ -335,11 +332,11 @@
           let array = new Uint8Array(reader.result);
           if (fn.endsWith(".zip")) {
             fn = "/" + fn;
-            pyodide.FS.writeFile(fn, Buffer.from(array));
+            pyodide.FS.writeFile(fn, array);
             load_project(fn);
             //pyodide.FS.unlink(fn);
           } else {
-            pyodide.FS.writeFile(fn, Buffer.from(array));
+            pyodide.FS.writeFile(fn, array);
             pyodide.FS.syncfs(false, err => err && console.error("Error syncing to IDBFS", err))
             update_file_list();
           }
