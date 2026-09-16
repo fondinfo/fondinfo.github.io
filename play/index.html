@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-ui/dist/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui/dist/themes/base/jquery-ui.min.css" />
 
@@ -92,6 +92,7 @@
     <button onclick="new_file()" title="New file">➕</button>
     <button title="Upload file or project"><label><input type="file" id="file" onchange="upload_file()" style="display:none;">⬆️</label></button>
     <button onclick="download_project()" title="Download project">⬇️</button>
+    <button onclick="share()" title="Share source">↪️</button>
     <button onclick="load_project('/fondinfo.zip')" title="Delete project">♻️</button>
     </h1>
     <div id="loading"></div>
@@ -116,11 +117,18 @@
         if (!timer) timer = setTimeout(save_file, 500);
       });
 
+      function share() {
+        try {
+          if (!current_file) return;
+          let data = { text : editor.getValue().replaceAll("\t", "    ").replaceAll("\u00A0", " ") };
+          if (navigator.canShare && navigator.canShare(data)) { navigator.share(data); }
+        } catch (e) { console.error(e); }
+      }
+
       function write(data) {
+        console.log(data);
         if (term) {
           term.echo($.terminal.escape_formatting(data));
-        } else {
-          console.log(data);
         }
       }
 
@@ -309,7 +317,7 @@
       }
 
       function load_project(project) {
-        let question = "Are you sure to delete current project?";
+        let question = "Delete *all files* in current project?";
         if (confirm(question)) {
           current_file = "";
           clear_project();
