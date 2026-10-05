@@ -284,7 +284,7 @@
           clear_canvas(event);
         }
       }
-      
+
       function new_file() {
         let fn = prompt("New file name (trailing “/” for a folder)");
         if (fn) {
@@ -492,6 +492,7 @@
         term = $("#stdterm").terminal(interpreter, {
           greetings: banner,
           prompt: ps1,
+          tabs: 8,
           completionEscape: false,
           height: 200,
           completion: function (command, callback) {
