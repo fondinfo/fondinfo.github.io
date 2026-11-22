@@ -317,6 +317,9 @@
         } catch (err) {
           // hide Pyodide's internal frames: show the traceback from the user's code
           let msg = err && err.message ? err.message : String(err);
+          // sys.exit(0) / sys.exit() (e.g. at the end of unittest.main()) is a normal end, not an error
+          const exit = msg.trimEnd().split("\n").at(-1).match(/^SystemExit(?::\s*(.*))?$/);
+          if (exit && ["", "0", "None"].includes((exit[1] || "").trim())) return;
           const i = msg.indexOf('File "<exec>"');
           if (i >= 0) msg = "Traceback (most recent call last):\n  " + msg.substring(i);
           write(msg);
